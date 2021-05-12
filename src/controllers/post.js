@@ -1,12 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { error, ErrorMessages } from '../utils/errors.js';
-import { v4 as uuidv4 } from 'uuid';
-import nodemailer from 'nodemailer'
-import logger from '../utils/winston.js'
-import bcrypt from 'bcryptjs';
 import config from '../utils/config.js'
-import moment from 'moment'
-import jwt from 'jsonwebtoken';
 import _ from 'lodash'
 import User from '../Graphi/user.js'
 import Post from '../Graphi/post.js'
@@ -21,13 +15,10 @@ export default {
        if(userId == null || content == null ){
            return callback(error(ErrorMessages.post_field_missing))
         }
-        console.log(2)
-        
 
         let post = await Post.create({ 
             content,
         });
-        console.log("ASE")
         await User.addRelation(userId,'Posted',Post,post._id);
         callback({
             success: true,
