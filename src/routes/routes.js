@@ -18,9 +18,9 @@ const routes = {
         });
     },
   
-    product:(req, res)=>{
+    post:(req, res)=>{
 
-        findMethod(endpoints["product"], req.payload.method, req.payload,(M)=>{
+        findMethod(endpoints["post"], req.payload.method, req.payload,(M)=>{
             const R = response(M);
             return res.status(R.code).json(R.result);
         });

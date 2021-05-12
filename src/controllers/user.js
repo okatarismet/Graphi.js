@@ -70,7 +70,7 @@ export default {
                     email: user.email,
                     password: password,
                 },
-                process.env.JWT_KEY || "",
+                process.env.JWT_KEY || "dummy",
             )
             callback({
                 success:true,

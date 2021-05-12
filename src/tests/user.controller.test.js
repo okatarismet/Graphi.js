@@ -5,46 +5,63 @@ import axios from 'axios';
 import config from '../utils/testing.config.js'
 let token;
 
-beforeAll( (done) => {
-    try {
-        axios.post(config.LOCAL+'/user/login',config.sample_user)
-        .then(res =>{
-            token = res.data.token;
-            done();
-        })
-    } catch(err) {
-        console.log(err)
-    }
-});
+
 
 describe('loginUser  API', () => {
+    it('should register succesfully', async () => {
+        try{
+            let result = await axios.post(config.LOCAL+'/user',
+            {
+                "method": "register",
+                "data": {
+                    "fullName": "ismet okatar",
+                    "username": "oktarismet",
+                    "email": "test@graphi.com",
+                    "password": "aa"
+                }
+            }
+            );
+            expect(result.status).toEqual(200);
+            expect(result.data.token).not.toBeDefined();
+        }catch(err) {
+            // //
+        }
+    })
     it('should login succesfully', async () => {
         try{
-            let result = await axios.post(config.LOCAL+'/user/login',config.sample_user);
-            expect(result.status).toEqual(401);
+            let result = await axios.post(config.LOCAL+'/user',
+                {
+                    "method": "login",
+                    "data": {
+                        "email": "test@graphi.com",
+                        "password": "aa"
+                    }
+                }
+            );
+            expect(result.status).toEqual(200);
             expect(result.data.token).not.toBeDefined();
         }catch(err) {
             // //
         }
     })
-    it('should assert wrong email', async () => {
-        try{
-            let result = await axios.post(config.LOCAL+'/user/login',config.sample_user_wrong_email);
-            expect(result.status).toEqual(401);
-            expect(result.data.token).not.toBeDefined();
-        }catch(err) {
-            // //
-        }
-    })
-    it('should assert wrong password', async () => {
-        try{
-            let result = await axios.post(config.LOCAL+'/user/login',config.sample_user_wrong_password);
-            expect(result.status).toEqual(401);
-            expect(result.data.token).not.toBeDefined();
-        }catch(err) {
-            // //
-        }
-    })
+    // it('should assert wrong email', async () => {
+    //     try{
+    //         let result = await axios.post(config.LOCAL+'/user/login',config.sample_user_wrong_email);
+    //         expect(result.status).toEqual(401);
+    //         expect(result.data.token).not.toBeDefined();
+    //     }catch(err) {
+    //         // //
+    //     }
+    // })
+    // it('should assert wrong password', async () => {
+    //     try{
+    //         let result = await axios.post(config.LOCAL+'/user/login',config.sample_user_wrong_password);
+    //         expect(result.status).toEqual(401);
+    //         expect(result.data.token).not.toBeDefined();
+    //     }catch(err) {
+    //         // //
+    //     }
+    // })
 })
 
 

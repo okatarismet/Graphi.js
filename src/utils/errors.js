@@ -68,31 +68,7 @@ export const ErrorMessages = {
     message: "Something went wrong with product",
     statusCode:200
   },
-  product_not_found: { code: "P1", message: "Product not found", statusCode:200 },
-  product_field_missing: { code: "P1", message: "Missing fields in products", statusCode:200 },
-  product_cant_edit_approved: {
-    code: "P2",
-    message: "Cant edit approved product",
-    statusCode:200
-  },
-  product_cant_edit_another: {
-    code: "P3",
-    message: "Cant edit someone elses product",
-    statusCode:200
-
-  },
-  product_cant_delete_approved: {
-    code: "P4",
-    message: "Cant delete approved product",
-    statusCode:200
-
-  },
-  product_cant_access_another: {
-    code: "P4",
-    message: "Cant access someone elses product",
-    statusCode:200
-
-  },
+  post_field_missing: { code: "P0", message: "Post field missing", statusCode:200},
 
   user_autohandle: { code: "O0", message: "Something went wrong with user", statusCode:401},
   user_wrong_password: { code: "U1", message: "Wrong credentials", statusCode:200},

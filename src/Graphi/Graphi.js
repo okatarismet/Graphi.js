@@ -1,16 +1,15 @@
 import { v4 as uuidv4 } from 'uuid';
 class Modal {
   typeScheme = {};
+  incrementalIdCounter=0
+  incrementalId=true
   entries = [
-    {
-      id: 1,
-      name: "ismwet",
-      age: 1,
-    },
+   
   ];
   relations = [];
-  constructor(typeScheme = {}) {
+  constructor(typeScheme = {},incremenetalId = true) {
     this.typeScheme = typeScheme;
+    this.incrementalId = incremenetalId;
   }
 
   findAll() {
@@ -20,7 +19,7 @@ class Modal {
   }
   findById(id) {
     return new Promise((resolve, reject) => {
-      let filteredEntry = this.entries.find((e) => id === e.id);
+      let filteredEntry = this.entries.find((e) => id === e._id);
       resolve(filteredEntry);
     });
   }
@@ -58,7 +57,7 @@ class Modal {
   create(entry) {
     this.checkTypeExact(entry);
     return new Promise((resolve, reject) => {
-      entry._id = uuidv4();
+      entry._id = this.incrementalId ? this.incrementalIdCounter++ : uuidv4();
       entry.relations = [];
       this.entries.push(entry);
       resolve(entry);
@@ -66,7 +65,8 @@ class Modal {
   }
   addRelation(id, interaction, modal, modalId) {
     return new Promise((resolve, reject) => {
-      let entry = this.entries.find((e) => id === e.id);
+      let entryIndex = this.entries.findIndex((e) => id === e._id);
+      let entry = this.entries[entryIndex];
       let relation = {
         interaction,
         modal,
@@ -75,28 +75,34 @@ class Modal {
       const relationExists = entry.relations.every(
         (e) => JSON.stringify(e) === JSON.stringify(relation)
       );
-      if (relationExists) {
+      if (entry.relations.length > 0 && relationExists) {
         throw new Error("Relation Already Exists!");
       }
-      entry.relation.push(outRelation);
-      this.update(id, entry);
-      resolve({});
+      entry.relations.push(relation);
+      this.entries[entryIndex] = entry;
+      resolve({
+        success:true,
+        data:{}
+      });
     });
   }
   update(id, entry) {
     return new Promise((resolve, reject) => {
       this.checkTypeIncludes(entry);
-      let entryIndex = this.entries.findIndex((e) => id === e.id);
+      let entryIndex = this.entries.findIndex((e) => id === e._id);
       this.entries[entryIndex] = {
         ...this.entries[entryIndex],
         ...entry,
       };
+      console.log(this.entries[entryIndex])
+      console.log(entry)
+      console.log(this.entries)
       resolve(this.entries[entryIndex]);
     });
   }
   delete(id) {
     return new Promise((resolve, reject) => {
-      const entryIndex = this.entries.findIndex((e) => id === e.id);
+      const entryIndex = this.entries.findIndex((e) => id === e._id);
       this.entries.splice(entryIndex, 1);
       resolve({ id });
     });
@@ -120,21 +126,5 @@ export const Types = {
     String:"string",
     Number:"number"
 }
-// try{
-//     const user = new Modal({name:{type:Graphi.String}});
-//     const post = new Modal({content:"aa"});
-//     let a  = await user.create({name:"ismet",age:12});
-//     let b = await post.create({content:"ismet"});
 
-//     console.log(a)
-//     console.log(user.find({
-//         where:{
-//             age:[0,13],
-//             name:"ismwet"
-//         }
-//     }));
-
-// } catch(err){
-//     console.log(err)
-// }
 export {Modal};
