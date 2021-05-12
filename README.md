@@ -10,6 +10,14 @@ V 1.0
 	- [User](#user)
 		- [Login](#login)
 		- [Register](#register)
+	- [Post](#post)
+		- [Create](#create)
+		- [Update](#update)
+		- [GetById](#getById)
+		- [GetByFilter](#getByFilter)
+		- [Delete](#delete)
+
+
 		
 ## What is Graphi API
 It is a simple REST API which uses Graphi DB which is written in Javascript. 
