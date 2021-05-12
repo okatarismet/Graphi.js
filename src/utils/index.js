@@ -21,7 +21,6 @@ export const applyRoutes = (routes, router) => {
 
 export const setRoutes = (routes, app) => {
   Object.keys(routes).forEach(route => {
-    //console.info(`Endpoint ${route} defined`);
     app.all(`/${route}(/?*)`, routes[route])
   })
 }

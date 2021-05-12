@@ -94,9 +94,6 @@ class Modal {
         ...this.entries[entryIndex],
         ...entry,
       };
-      console.log(this.entries[entryIndex])
-      console.log(entry)
-      console.log(this.entries)
       resolve(this.entries[entryIndex]);
     });
   }

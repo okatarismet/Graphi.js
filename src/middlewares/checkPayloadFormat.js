@@ -30,7 +30,6 @@ export default (req, res, next) => {
         }
 
         if(req.payload.id){
-          console.log("ID RECV",req.payload.id);
         }
         checkPaginationFormat(req.payload, req.body.pagination);
         next();

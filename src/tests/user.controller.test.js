@@ -102,14 +102,12 @@ describe('loginUser  API', () => {
 // // })
 // // describe('Post Endpoints', () => {
 // //    it('should create a new post', async () => {
-// //      console.log("SEEEEEEEEEEEEEEEEEEEEEEEEEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 // //      const res = await request(server)
 // //      .post('/user/login')
 // //      .send({
 // //        email:"jonh@gmail.com",
 // //        password:"exampleuser"
 // //       })
-// //       console.log("AAAAAAAAAAAAAAAAASEEEEEEEEEEEEEEEEEEEEEEEEEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 // //     expect(res.statusCode).toEqual(200)
 // //     // expect(res.body).toHaveProperty('post')
 // //   })

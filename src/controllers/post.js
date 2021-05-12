@@ -10,7 +10,6 @@ const DEBUG = config.DEBUG;
 export default {
  
    create: async (payload, callback) => {
-       console.log(1)
        const { userId, content } = payload.data; 
        if(userId == null || content == null ){
            return callback(error(ErrorMessages.post_field_missing))

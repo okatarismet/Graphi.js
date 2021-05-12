@@ -17,7 +17,6 @@ export default {
  
    register: async (payload, callback) => {
         const { fullName,username, email, password } = payload.data; // TODO those has to be validated
-        console.log(email)
         let user = await User.find({
             where: { email: email },
         })
@@ -43,27 +42,22 @@ export default {
     login: async (payload, callback) => {
         const { email, password } = payload.data;
         //Find if user exists
-        console.log(email)
         let user = await User.find({
             where: { email: email },
         })
         user = user[0];
-        console.log('úse',user)
         
         if (!user) {
             logger.error(error(ErrorMessages.user_not_found))
             callback(error(ErrorMessages.user_not_found))
             return;
         }
-        console.log(user);
         bcrypt.compare(password, user.password, (err, result) => {
             if (err || !result) {
-                console.log(err.message)
                 callback(error(ErrorMessages.user_wrong_password))
                 return;
             }
             // If password matches sign with jwt
-            console.log("Auth succesful");
             const token = jwt.sign(
                 {
                     _id: user._id,
