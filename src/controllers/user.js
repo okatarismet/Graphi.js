@@ -1,16 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { error, ErrorMessages } from '../utils/errors.js';
-import { v4 as uuidv4 } from 'uuid';
-import nodemailer from 'nodemailer'
 import logger from '../utils/winston.js'
 import bcrypt from 'bcryptjs';
-import config from '../utils/config.js'
-import moment from 'moment'
 import jwt from 'jsonwebtoken';
 import _ from 'lodash'
 import User from '../Graphi/user.js'
-
-const DEBUG = config.DEBUG;
 
 export default {
 
