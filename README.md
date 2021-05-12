@@ -10,8 +10,16 @@ V 1.0
 	- [User](#user)
 		- [Login](#login)
 		- [Register](#register)
-
-
+		
+## What is Graphi API
+It is a simple REST API which uses Graphi DB which is written in Javascript. 
+## How to use
+Just run those two commands
+ ```js
+npm install
+npm run
+``` 
+And you are ready to go!
 
 ## Endpoints
 - [/user](#User) (listable, editable, removable)
