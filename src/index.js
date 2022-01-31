@@ -2,7 +2,7 @@
 import dotenv from 'dotenv';
 import http from 'http';
 import express from 'express';
-import { applyMiddleware, /*applyRoutes,*/ setRoutes } from './utils/index.js';
+import { applyMiddleware, setRoutes } from './utils/index.js';
 
 import { default as routeMap, listEndpoints } from './routes/routes.js';
 import middlewares from './middlewares/index.js';
@@ -24,7 +24,6 @@ process.on('unhandledRejection', (reason, promise) => {
 
 applyMiddleware(middlewares, app);
 app.use(checkPayloadFormat);
-// app.use(authAccount);
 setRoutes(routeMap, app);
 
 const server = http.createServer(app);

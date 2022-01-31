@@ -35,7 +35,6 @@ export default {
 
     login: async (payload, callback) => {
         const { email, password } = payload.data;
-        //Find if user exists
         let user = await User.find({
             where: { email: email },
         })
@@ -51,7 +50,6 @@ export default {
                 callback(error(ErrorMessages.user_wrong_password))
                 return;
             }
-            // If password matches sign with jwt
             const token = jwt.sign(
                 {
                     _id: user._id,
