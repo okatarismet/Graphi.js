@@ -1,11 +1,8 @@
 /* eslint-disable no-unused-vars */
 import { error, ErrorMessages } from '../utils/errors.js';
-import config from '../utils/config.js'
 import _ from 'lodash'
 import User from '../Graphi/user.js'
 import Post from '../Graphi/post.js'
-
-const DEBUG = config.DEBUG;
 
 export default {
  
@@ -26,6 +23,7 @@ export default {
             }
         })
     },
+    
    update: async (payload, callback) => {
        const { postId, content } = payload.data; 
        if(postId == null || content == null ){
@@ -40,6 +38,7 @@ export default {
             data:post,
         })
     },
+
    getById: async (payload, callback) => {
        const { postId } = payload.data; 
        if(postId == null ){
@@ -51,6 +50,7 @@ export default {
             data:post,
         })
     },
+
    getFiltered: async (payload, callback) => {
        const { content = ""} = payload.data; 
        
@@ -60,6 +60,7 @@ export default {
             data:post,
         })
     },
+
    delete: async (payload, callback) => {
        const { postId } = payload.data; 
        
