@@ -7,20 +7,7 @@ import Post from '../Graphi/post.js'
 export default {
  
 
-   update: async (payload, callback) => {
-       const { postId, content } = payload.data; 
-       if(postId == null || content == null ){
-           return callback(error(ErrorMessages.post_field_missing))
-        }
-
-        let post = await Post.update(postId,{ 
-            content
-        });
-        callback({
-            success: true,
-            data:post,
-        })
-    },
+  
 
    getById: async (payload, callback) => {
        const { postId } = payload.data; 
